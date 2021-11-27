@@ -6,6 +6,10 @@
     "api",
     "app"
   ],
+  "engines": {
+    "node": ">=15.0.0",
+    "npm": ">=7.9.0"
+  },
   "main": "index.js",
   "scripts": {
     "build": "npm run build --workspace=app",
