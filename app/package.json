@@ -1,0 +1,37 @@
+{
+  "name": "fullstack-bootcamp",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "test": "jest",
+    "cypress:open":"cypress open"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@vitejs/plugin-react": "^1.0.0",
+    "babel-jest": "^27.3.1",
+    "cypress": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.3.1",
+    "prop-types": "^15.7.2", 
+    "react-test-renderer": "^17.0.2",
+    "vite": "^2.6.4"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
+}
