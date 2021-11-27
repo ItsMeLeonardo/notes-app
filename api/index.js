@@ -41,6 +41,7 @@ app.use(Sentry.Handlers.tracingHandler())
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static('../app/dist'))
 
 app.get('/', (request, response) => {
   response.send('<h1>Full stack open - Bootcamp</h1>')

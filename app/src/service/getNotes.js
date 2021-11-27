@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-// const baseUrl = 'https://fullstack-bootcamp-note-app.herokuapp.com/api/notes'
-const baseUrl = 'http://localhost:3001/api/notes'
+const baseUrl = '/api/notes'
 
 let token = null
 

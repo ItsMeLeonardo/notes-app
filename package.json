@@ -8,7 +8,11 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build --workspace=app",
+    "start": "npm run start --workspace=api",
+    "dev:app:api": "npm run build && npm run dev --workspace=api",
+    "dev:api": "npm run dev --workspace=api",
+    "dev:app": "npm run dev --workspace=app"
   },
   "devDependencies": {
     "eslint": "^8.3.0",
