@@ -1,14 +1,12 @@
-import { useState, useRef } from 'react'
-import PropTypes from 'prop-types'
+import { useRef } from 'react'
 
-import loginService from '../../service/login'
-import Notification from '../Notification'
-import Togglable from '../Togglable'
-import useNotes from '../../hooks/useNotes'
+import Notification from '../../components/Notification'
+import Togglable from '../../components/Togglable'
+import useAuth from '../../hooks/useAuth'
 
-export default function Login({ saveUser }) {
-  const [error, setError] = useState(false)
-  const { getToken } = useNotes()
+export default function Login() {
+  const { login, error } = useAuth()
+
   const formLoginRef = useRef(null)
 
   const handleLogin = (event) => {
@@ -19,20 +17,7 @@ export default function Login({ saveUser }) {
       password: formData.get('password'),
     }
 
-    loginService
-      .login(userData)
-      .then((response) => {
-        saveUser(response)
-        sessionStorage.setItem('sessionUser', JSON.stringify(response))
-        getToken(response.token)
-      })
-      .catch((err) => {
-        setError(err.response.data)
-        sessionStorage.clear()
-        setTimeout(() => {
-          setError(false)
-        }, 2500)
-      })
+    login(userData)
   }
 
   return (
@@ -51,8 +36,4 @@ export default function Login({ saveUser }) {
       </form>
     </Togglable>
   )
-}
-
-Login.propTypes = {
-  saveUser: PropTypes.func.isRequired,
 }

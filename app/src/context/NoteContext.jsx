@@ -2,7 +2,7 @@ import React, { /* useCallback, useMemo, */ useState } from 'react'
 
 const NoteContext = React.createContext()
 
-function NoteContextProvider({ children }) {
+function NoteProvider({ children }) {
   // const [initialNotes, setInitialNotes] = useState([])
   const [notes, setNotes] = useState(() => {
     const localData = localStorage.getItem('notes')
@@ -17,4 +17,4 @@ function NoteContextProvider({ children }) {
   )
 }
 
-export { NoteContextProvider, NoteContext }
+export { NoteProvider, NoteContext }

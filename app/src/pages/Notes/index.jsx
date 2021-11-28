@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import useNotes from '../../hooks/useNotes'
-import NoteItem from './NoteItem'
+import Note from '../../components/Note'
+import AddNote from '../../components/AddNote'
 
 export default function Notes() {
   const { notes, updateNote } = useNotes()
@@ -21,12 +22,15 @@ export default function Notes() {
 
   return (
     <>
-      <button type="button" onClick={handleShowImportant}>
-        {showAll ? 'Show Important' : 'Show All'}
-      </button>
+      <div>
+        <AddNote />
+        <button type="button" onClick={handleShowImportant}>
+          {showAll ? 'Show Important' : 'Show All'}
+        </button>
+      </div>
       <ul>
         {noteToShow?.map(({ id, content, important }) => (
-          <NoteItem
+          <Note
             key={id}
             id={id}
             content={content}

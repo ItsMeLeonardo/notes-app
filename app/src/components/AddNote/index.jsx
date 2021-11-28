@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import useNotes from '../../hooks/useNotes'
 import Togglable from '../Togglable'
 
-export default function AddNote({ logout }) {
+export default function AddNote() {
   const formRef = useRef(null)
   const togglableRef = useRef(null)
   const { saveNote } = useNotes()
@@ -29,13 +29,6 @@ export default function AddNote({ logout }) {
         <input name="note" placeholder="Write your note here" />
         <input type="submit" value="add note" />
       </form>
-      <button type="button" onClick={logout}>
-        Logout
-      </button>
     </Togglable>
   )
-}
-
-AddNote.propTypes = {
-  logout: PropTypes.func.isRequired,
 }

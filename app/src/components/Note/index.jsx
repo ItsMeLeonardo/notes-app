@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 function NoteItem({ id, content, important, toggleImportant }) {
   const [importantState, setImportantState] = useState(important)
-  // const { updateNote } = useNotes()
   const style = { display: 'flex', justifyContent: 'start', alignItems: 'center' }
 
   const handleImportantToggle = () => {
@@ -17,6 +17,7 @@ function NoteItem({ id, content, important, toggleImportant }) {
       <button type="button" onClick={handleImportantToggle}>
         {importantState ? 'Important' : 'Not Important'}
       </button>
+      <Link to={`/note/${id}`}>See detail</Link>
     </li>
   )
 }
