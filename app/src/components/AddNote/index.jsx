@@ -1,5 +1,7 @@
 import { useRef } from 'react'
-import PropTypes from 'prop-types'
+
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 import useNotes from '../../hooks/useNotes'
 import Togglable from '../Togglable'
@@ -25,10 +27,10 @@ export default function AddNote() {
 
   return (
     <Togglable buttonLabel="Add note" ref={togglableRef}>
-      <form ref={formRef} onSubmit={handleSubmit}>
-        <input name="note" placeholder="Write your note here" />
-        <input type="submit" value="add note" />
-      </form>
+      <Form ref={formRef} onSubmit={handleSubmit} className="d-flex gap-2">
+        <Form.Control type="text" name="note" placeholder="Write your note here" />
+        <Button as="input" type="submit" value="add note" />
+      </Form>
     </Togglable>
   )
 }

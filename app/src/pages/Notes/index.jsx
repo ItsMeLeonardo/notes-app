@@ -1,4 +1,8 @@
 import { useState } from 'react'
+
+import ListGroup from 'react-bootstrap/ListGroup'
+import Button from 'react-bootstrap/Button'
+
 import useNotes from '../../hooks/useNotes'
 import Note from '../../components/Note'
 import AddNote from '../../components/AddNote'
@@ -24,11 +28,11 @@ export default function Notes() {
     <>
       <div>
         <AddNote />
-        <button type="button" onClick={handleShowImportant}>
+        <Button type="button" onClick={handleShowImportant} className="my-2">
           {showAll ? 'Show Important' : 'Show All'}
-        </button>
+        </Button>
       </div>
-      <ul>
+      <ListGroup as="ul">
         {noteToShow?.map(({ id, content, important }) => (
           <Note
             key={id}
@@ -38,7 +42,7 @@ export default function Notes() {
             important={important}
           />
         ))}
-      </ul>
+      </ListGroup>
     </>
   )
 }

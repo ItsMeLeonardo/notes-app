@@ -15,12 +15,13 @@ const Togglable = forwardRef(({ children, buttonLabel }, ref) => {
   }))
 
   return (
-    <div>
+    <div className="my-2">
       <Button
         variant="info"
         type="button"
         onClick={toggleVisibility}
         style={hideWhenVisible}
+        className="my-2"
       >
         {buttonLabel}
       </Button>
@@ -28,7 +29,12 @@ const Togglable = forwardRef(({ children, buttonLabel }, ref) => {
       <div style={showWhenVisible}>
         {children}
 
-        <Button onClick={toggleVisibility} variant="danger" type="button">
+        <Button
+          onClick={toggleVisibility}
+          variant="danger"
+          type="button"
+          className="my-2"
+        >
           Cancel
         </Button>
       </div>

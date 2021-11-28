@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import NavBar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
 
 import useAuth from '../../hooks/useAuth'
 
@@ -22,9 +24,9 @@ export default function Navbar() {
         </NavBar.Text>
         <NavBar.Text>
           {user ? (
-            <button type="button" onClick={logout}>
+            <Button variant="dark" type="button" onClick={logout}>
               logout
-            </button>
+            </Button>
           ) : (
             <Link to="/login">Login</Link>
           )}
