@@ -1,23 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import NavBar from 'react-bootstrap/Navbar'
+import Container from 'react-bootstrap/Container'
+
 import useAuth from '../../hooks/useAuth'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
 
   return (
-    <nav>
-      <ul>
-        <li>
+    <NavBar bg="light" variant="light">
+      <Container>
+        <NavBar.Text>
           <Link to="/">Home</Link>
-        </li>
-        <li>
+        </NavBar.Text>
+        <NavBar.Text>
           <Link to="/notes">Notes</Link>
-        </li>
-        <li>
+        </NavBar.Text>
+        <NavBar.Text>
           <Link to="/users">Users</Link>
-        </li>
-        <li>
+        </NavBar.Text>
+        <NavBar.Text>
           {user ? (
             <button type="button" onClick={logout}>
               logout
@@ -25,8 +28,8 @@ export default function Navbar() {
           ) : (
             <Link to="/login">Login</Link>
           )}
-        </li>
-      </ul>
-    </nav>
+        </NavBar.Text>
+      </Container>
+    </NavBar>
   )
 }
