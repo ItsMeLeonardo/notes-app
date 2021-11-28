@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import useNotes from '../../hooks/useNotes'
 
-function NoteItem({ content, important, id }) {
+function NoteItem({ id, content, important, toggleImportant }) {
   const [importantState, setImportantState] = useState(important)
-  const { updateNote } = useNotes()
+  // const { updateNote } = useNotes()
   const style = { display: 'flex', justifyContent: 'start', alignItems: 'center' }
+
   const handleImportantToggle = () => {
-    const newNote = {
-      content,
-      important: !importantState,
-    }
-    setImportantState(newNote.important)
-    updateNote({ id, newNote })
+    toggleImportant(id)
+    setImportantState(!importantState)
   }
 
   return (
@@ -32,6 +28,7 @@ export default React.memo(
 
 NoteItem.propTypes = {
   content: PropTypes.string.isRequired,
-  important: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
+  important: PropTypes.bool.isRequired,
+  toggleImportant: PropTypes.func.isRequired,
 }
