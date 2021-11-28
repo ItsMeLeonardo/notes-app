@@ -16,8 +16,8 @@ export default function Notes() {
         {showAll ? 'Show Important' : 'Show All'}
       </button>
       <ul>
-        {noteToShow?.map(({ id, content }) => (
-          <NoteItem key={id} content={content} />
+        {noteToShow?.map(({ id, content, important }) => (
+          <NoteItem key={id} id={id} content={content} important={important} />
         ))}
       </ul>
     </>

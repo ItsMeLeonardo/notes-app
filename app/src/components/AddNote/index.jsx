@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import useNotes from '../../hooks/useNotes'
 import Togglable from '../Togglable'
 
-export default function AddNote({ token, logout }) {
+export default function AddNote({ logout }) {
   const formRef = useRef(null)
   const togglableRef = useRef(null)
-  const { saveNote, getToken } = useNotes()
+  const { saveNote } = useNotes()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -19,7 +19,6 @@ export default function AddNote({ token, logout }) {
     }
 
     formRef.current.firstChild.value = ''
-    getToken(token)
     saveNote(note)
     togglableRef.current.toggleVisibility()
   }
@@ -38,6 +37,5 @@ export default function AddNote({ token, logout }) {
 }
 
 AddNote.propTypes = {
-  token: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
 }

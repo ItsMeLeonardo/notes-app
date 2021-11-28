@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 import loginService from '../../service/login'
 import Notification from '../Notification'
 import Togglable from '../Togglable'
+import useNotes from '../../hooks/useNotes'
 
 export default function Login({ saveUser }) {
   const [error, setError] = useState(false)
+  const { getToken } = useNotes()
   const formLoginRef = useRef(null)
 
   const handleLogin = (event) => {
@@ -22,6 +24,7 @@ export default function Login({ saveUser }) {
       .then((response) => {
         saveUser(response)
         sessionStorage.setItem('sessionUser', JSON.stringify(response))
+        getToken(response.token)
       })
       .catch((err) => {
         setError(err.response.data)

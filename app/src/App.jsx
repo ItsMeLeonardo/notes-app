@@ -4,13 +4,19 @@ import Header from './components/Header'
 import Notes from './components/Notes'
 import AddNote from './components/AddNote'
 import Login from './components/Login'
+import { getToken } from './service/getNotes'
 
 import './App.css'
 
 function App() {
   const [user, setUser] = useState(() => {
     const sessionUser = sessionStorage.getItem('sessionUser')
-    return sessionUser ? JSON.parse(sessionUser) : null
+    if (sessionUser) {
+      const userFromStorage = JSON.parse(sessionUser)
+      getToken(userFromStorage.token)
+      return userFromStorage
+    }
+    return null
   })
 
   const handleLogout = () => {
@@ -22,11 +28,7 @@ function App() {
     <div className="App">
       <Header />
       <NoteContextProvider>
-        {user ? (
-          <AddNote token={user.token} logout={handleLogout} />
-        ) : (
-          <Login saveUser={setUser} />
-        )}
+        {user ? <AddNote logout={handleLogout} /> : <Login saveUser={setUser} />}
         <Notes />
       </NoteContextProvider>
     </div>
