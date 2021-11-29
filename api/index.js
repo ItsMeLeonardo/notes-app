@@ -44,7 +44,7 @@ app.use(express.json())
 app.use(express.static('../app/dist'))
 
 app.get('/', (request, response) => {
-  response.send('<h1>Full stack open - Bootcamp</h1>')
+  response.send('<h1>Full stack open - BootCamp</h1>')
 })
 
 app.use('/api/notes', notesRouter)

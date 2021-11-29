@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken')
 const notesRouter = require('express').Router()
 const userExtractor = require('../middleware/userExtractor')
 

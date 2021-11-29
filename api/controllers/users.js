@@ -29,4 +29,18 @@ usersRouter.post('/', async (request, response) => {
   }
 })
 
+usersRouter.get('/:id', async (request, response) => {
+  try {
+    const { id } = request.params
+
+    const user = await User.findById(id).populate('notes', {
+      user: 0,
+      important: 0,
+    })
+    response.status(200).json(user)
+  } catch (error) {
+    response.status(400).send({ error: 'Missing or invalid id ' })
+  }
+})
+
 module.exports = usersRouter
