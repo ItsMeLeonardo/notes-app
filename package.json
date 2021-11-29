@@ -31,6 +31,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@geist-ui/react": "^2.2.0",
+    "@geist-ui/react-icons": "^1.0.1",
+    "inter-ui": "^3.19.3",
     "react-router-dom": "^6.0.2"
   }
 }

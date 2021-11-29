@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "normalize.css": "^8.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-router-dom": "^6.0.2"
+    "react-router-dom": "^6.0.2",
+    "inter-ui": "^3.19.3",
+    "@geist-ui/react-icons": "^1.0.1",
+    "@geist-ui/react": "^2.2.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",
