@@ -1,9 +1,14 @@
+import { Input, Spacer, Button } from '@geist-ui/react'
+import { Emoji } from '@geist-ui/react-icons'
+import { useRef } from 'react'
+
 import Notification from '../../components/Notification'
 import Togglable from '../../components/Togglable'
 import useAuth from '../../hooks/useAuth'
 
 export default function Login() {
   const { login, error } = useAuth()
+  const inputRef = useRef(null)
 
   const handleLogin = (event) => {
     event.preventDefault()
@@ -19,16 +24,23 @@ export default function Login() {
   return (
     <Togglable buttonLabel="Show Login form">
       <form onSubmit={handleLogin}>
-        <label htmlFor="username">
-          <input id="username" name="username" type="text" placeholder="Username" />
-        </label>
-        <label htmlFor="password">
-          <input id="password" name="password" placeholder="password" type="password" />
-        </label>
-        {error && <Notification message={error.error} />}
-        <button type="submit" id="login-button">
+        <Input name="username" placeholder="Username" width="20" iconRight={<Emoji />} />
+        <Spacer h={0.5} />
+
+        <Input.Password name="password" width="20" placeholder="password" />
+        <Spacer h={0.5} />
+
+        {error && <Notification message={error.error} type="error" />}
+
+        <input type="submit" ref={inputRef} style={{ display: 'none' }} />
+        <Button
+          type="success"
+          id="login-button"
+          onClick={() => inputRef.current.click()}
+          width="1"
+        >
           Login
-        </button>
+        </Button>
       </form>
     </Togglable>
   )

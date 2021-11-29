@@ -1,5 +1,6 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import PropTypes from 'prop-types'
+import { Button, Spacer } from '@geist-ui/react'
 
 const Togglable = forwardRef(({ children, buttonLabel }, ref) => {
   const [visible, setVisible] = useState(false)
@@ -14,16 +15,17 @@ const Togglable = forwardRef(({ children, buttonLabel }, ref) => {
 
   return (
     <div>
-      <button type="button" onClick={toggleVisibility} style={hideWhenVisible}>
+      <Button onClick={toggleVisibility} style={hideWhenVisible} type="secondary">
         {buttonLabel}
-      </button>
+      </Button>
 
       <div style={showWhenVisible}>
         {children}
 
-        <button type="button" onClick={toggleVisibility}>
+        <Spacer />
+        <Button onClick={toggleVisibility} type="error">
           Cancel
-        </button>
+        </Button>
       </div>
     </div>
   )
