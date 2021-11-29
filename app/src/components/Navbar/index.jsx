@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Grid, Button } from '@geist-ui/react'
+import { BookOpen, Home, User, LogOut, LogIn } from '@geist-ui/react-icons'
+
 import useAuth from '../../hooks/useAuth'
 
 export default function Navbar() {
@@ -7,26 +10,39 @@ export default function Navbar() {
 
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/notes">Notes</Link>
-        </li>
-        <li>
-          <Link to="/users">Users</Link>
-        </li>
-        <li>
+      <Grid.Container
+        gap={1}
+        justify="space-between"
+        marginTop=".5rem"
+        marginBottom="1rem"
+      >
+        <Grid xs={6} justify="center">
+          <Button shadow auto icon={<Home />}>
+            <Link to="/">Home</Link>
+          </Button>
+        </Grid>
+        <Grid xs={6} justify="center">
+          <Button shadow auto icon={<BookOpen />}>
+            <Link to="/notes">Notes</Link>
+          </Button>
+        </Grid>
+        <Grid xs={6} justify="center">
+          <Button shadow auto icon={<User />}>
+            <Link to="/users">Users</Link>
+          </Button>
+        </Grid>
+        <Grid xs={6} justify="center">
           {user ? (
-            <button type="button" onClick={logout}>
+            <Button shadow auto icon={<LogOut />} onClick={logout}>
               logout
-            </button>
+            </Button>
           ) : (
-            <Link to="/login">Login</Link>
+            <Button shadow auto icon={<LogIn />}>
+              <Link to="/login">Login</Link>
+            </Button>
           )}
-        </li>
-      </ul>
+        </Grid>
+      </Grid.Container>
     </nav>
   )
 }
