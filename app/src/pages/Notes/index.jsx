@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Grid } from '@geist-ui/react'
+
 import useNotes from '../../hooks/useNotes'
 import Note from '../../components/Note'
 import AddNote from '../../components/AddNote'
@@ -28,7 +30,7 @@ export default function Notes() {
           {showAll ? 'Show Important' : 'Show All'}
         </button>
       </div>
-      <ul>
+      <Grid.Container gap={2}>
         {noteToShow?.map(({ id, content, important }) => (
           <Note
             key={id}
@@ -38,7 +40,7 @@ export default function Notes() {
             important={important}
           />
         ))}
-      </ul>
+      </Grid.Container>
     </>
   )
 }
