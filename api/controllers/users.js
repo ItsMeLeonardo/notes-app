@@ -5,7 +5,7 @@ const User = require('../models/User')
 
 usersRouter.get('/', async (request, response) => {
   const users = await User.find({}).populate('notes', { user: 0 })
-  response.status(200).json(users)
+  response.status(200).json({ users })
 })
 
 // TODO: add more validations
@@ -29,17 +29,20 @@ usersRouter.post('/', async (request, response) => {
   }
 })
 
-usersRouter.get('/:id', async (request, response) => {
+usersRouter.get('/:username', async (request, response) => {
   try {
-    const { id } = request.params
+    const { username } = request.params
 
-    const user = await User.findById(id).populate('notes', {
+    const user = await User.findOne({ username }).populate('notes', {
       user: 0,
       important: 0,
     })
+
+    if (!user) throw new Error()
+
     response.status(200).json(user)
   } catch (error) {
-    response.status(400).send({ error: 'Missing or invalid id ' })
+    response.status(400).send({ error: 'Invalid user' })
   }
 })
 
