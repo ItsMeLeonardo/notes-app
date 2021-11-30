@@ -12,15 +12,12 @@ export default function Notification({ message, type }) {
     margin: 'auto',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'start',
   }
   return (
-    <>
-      <Spacer h={0.5} />
-      <Note type={type} label={styles.label} width="20" height="1" style={containerStyle}>
-        {message} <AlertCircle color={styles.color} />{' '}
-      </Note>
-      <Spacer h={0.5} />
-    </>
+    <Note type={type} label={styles.label} width="20" height="2" style={containerStyle}>
+      {message}
+    </Note>
   )
 }
 

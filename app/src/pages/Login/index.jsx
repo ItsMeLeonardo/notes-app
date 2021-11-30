@@ -1,4 +1,4 @@
-import { Input, Spacer, Button } from '@geist-ui/react'
+import { Input, useMediaQuery, Button, Grid, Text } from '@geist-ui/react'
 import { Emoji } from '@geist-ui/react-icons'
 import { useRef } from 'react'
 
@@ -9,6 +9,8 @@ import useAuth from '../../hooks/useAuth'
 export default function Login() {
   const { login, error } = useAuth()
   const inputRef = useRef(null)
+
+  const isXS = useMediaQuery('xs')
 
   const handleLogin = (event) => {
     event.preventDefault()
@@ -22,26 +24,36 @@ export default function Login() {
   }
 
   return (
-    <Togglable buttonLabel="Show Login form">
-      <form onSubmit={handleLogin}>
-        <Input name="username" placeholder="Username" width="20" iconRight={<Emoji />} />
-        <Spacer h={0.5} />
+    <section>
+      <Text h1>Login</Text>
+      <Togglable buttonLabel="Show Login form">
+        <form onSubmit={handleLogin}>
+          <input type="submit" ref={inputRef} style={{ display: 'none' }} />
+          <Grid.Container gap={1} justify="center" direction="column" alignItems="center">
+            <Grid sm={24}>
+              <Input name="username" placeholder="Username" iconRight={<Emoji />} />
+            </Grid>
 
-        <Input.Password name="password" width="20" placeholder="password" />
-        <Spacer h={0.5} />
+            <Grid sm={24}>
+              <Input.Password name="password" placeholder="password" />
+            </Grid>
 
-        {error && <Notification message={error.error} type="error" />}
+            <Grid>{error && <Notification message={error.error} type="error" />}</Grid>
 
-        <input type="submit" ref={inputRef} style={{ display: 'none' }} />
-        <Button
-          type="success"
-          id="login-button"
-          onClick={() => inputRef.current.click()}
-          width="1"
-        >
-          Login
-        </Button>
-      </form>
-    </Togglable>
+            <Grid>
+              <Button
+                type="success"
+                id="login-button"
+                width={isXS ? '100%' : 'auto'}
+                // width="100%"
+                onClick={() => inputRef.current.click()}
+              >
+                Login
+              </Button>
+            </Grid>
+          </Grid.Container>
+        </form>
+      </Togglable>
+    </section>
   )
 }
