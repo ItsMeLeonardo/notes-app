@@ -24,12 +24,16 @@ const create = async (newNote) => {
 }
 
 const update = async (id, newNote) => {
-  const config = {
-    headers: { Authorization: token },
+  try {
+    const config = {
+      headers: { Authorization: token },
+    }
+    const request = await axios.put(`${baseUrl}/${id}`, newNote, config)
+    const data = await request.data
+    return data
+  } catch (error) {
+    throw new Error(error.response.data.error)
   }
-  const request = await axios.put(`${baseUrl}/${id}`, newNote, config)
-  const data = await request.data
-  return data
 }
 
 export { getAll, create, update, getToken }

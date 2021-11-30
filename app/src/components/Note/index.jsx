@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Grid, Card, Text, Spacer, Button, Toggle, Tooltip, Tag } from '@geist-ui/react'
 
-function NoteItem({ id, content, important, toggleImportant }) {
+function NoteItem({ id, content, important, toggleImportant, isAuth }) {
   const [importantState, setImportantState] = useState(important)
 
   const style = { display: 'flex', justifyContent: 'start', alignItems: 'center' }
@@ -12,6 +12,14 @@ function NoteItem({ id, content, important, toggleImportant }) {
     toggleImportant(id)
     setImportantState(event.target.checked)
   }
+
+  const getToolTipText = () => {
+    if (!isAuth) return 'SignUp for change this note'
+    if (importantState) return 'Mark as not important'
+
+    return 'Make important'
+  }
+  const tooltipText = getToolTipText()
 
   return (
     <Grid style={style} xs={24} sm={12} md={8} lg={6}>
@@ -26,8 +34,12 @@ function NoteItem({ id, content, important, toggleImportant }) {
         </Text>
         <Spacer h={0.15} />
 
-        <Tooltip text={importantState ? 'Make Not Important' : 'Make Important'}>
-          <Toggle initialChecked={importantState} onChange={handleImportantToggle} />
+        <Tooltip text={tooltipText}>
+          <Toggle
+            initialChecked={importantState}
+            onChange={handleImportantToggle}
+            disabled={!isAuth}
+          />
         </Tooltip>
         <Spacer h={0.25} />
         <Button type="abort">
@@ -48,4 +60,5 @@ NoteItem.propTypes = {
   id: PropTypes.string.isRequired,
   important: PropTypes.bool.isRequired,
   toggleImportant: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool.isRequired,
 }

@@ -1,13 +1,16 @@
 import { useState } from 'react'
-import { Grid } from '@geist-ui/react'
+import { Grid, Button, Spacer, useMediaQuery } from '@geist-ui/react'
 
 import useNotes from '../../hooks/useNotes'
+import useAuth from '../../hooks/useAuth'
 import Note from '../../components/Note'
 import AddNote from '../../components/AddNote'
 
 export default function Notes() {
   const { notes, updateNote } = useNotes()
+  const { user } = useAuth()
   const [showAll, setShowAll] = useState(true)
+  const isXS = useMediaQuery('xs')
 
   const noteToShow = showAll ? notes : notes.filter((note) => note.important)
 
@@ -22,14 +25,25 @@ export default function Notes() {
     updateNote({ id, newNote })
   }
 
+  const styleOfButtons = {
+    desktop: { display: 'flex', justifyContent: 'center', gap: '1rem' },
+    mobile: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '1rem',
+      flexDirection: 'column',
+    },
+  }
+
   return (
     <>
-      <div>
+      <div style={isXS ? styleOfButtons.mobile : styleOfButtons.desktop}>
         <AddNote />
-        <button type="button" onClick={handleShowImportant}>
+        <Button onClick={handleShowImportant} type="success" ghost>
           {showAll ? 'Show Important' : 'Show All'}
-        </button>
+        </Button>
       </div>
+      <Spacer />
       <Grid.Container gap={2} style={{ padding: '.5rem' }}>
         {noteToShow?.map(({ id, content, important }) => (
           <Note
@@ -38,6 +52,7 @@ export default function Notes() {
             content={content}
             toggleImportant={handleToggleImportant}
             important={important}
+            isAuth={Boolean(user)}
           />
         ))}
       </Grid.Container>
