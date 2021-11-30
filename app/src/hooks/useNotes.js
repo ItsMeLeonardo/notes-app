@@ -22,20 +22,17 @@ const useNotes = () => {
     [setNotes],
   )
 
-  const updateNote = useCallback(
-    ({ id, newNote }) => {
-      update(id, newNote)
-        .then((updatedNote) => {
-          setNotes((prevNotes) =>
-            prevNotes.map((note) => (note.id === id ? updatedNote : note)),
-          )
-        })
-        .catch((err) => {
-          setError({ err })
-        })
-    },
-    [setNotes],
-  )
+  const updateNote = ({ id, newNote }) => {
+    update(id, newNote)
+      .then((updatedNote) => {
+        setNotes((prevNotes) =>
+          prevNotes.map((note) => (note.id === id ? updatedNote : note)),
+        )
+      })
+      .catch((err) => {
+        setError({ err })
+      })
+  }
 
   return { notes, saveNote, updateNote, error }
 }

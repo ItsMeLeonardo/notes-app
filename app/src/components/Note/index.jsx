@@ -25,7 +25,7 @@ function NoteItem({ id, content, important, toggleImportant, isAuth }) {
     <Grid style={style} xs={24} sm={12} md={8} lg={6}>
       <Card height="140px" width="100%" shadow>
         <Text small>
-          {important && (
+          {importantState && (
             <Tag type="error" scale={0.25} style={{ marginRight: '.5rem' }}>
               Important
             </Tag>
@@ -34,7 +34,7 @@ function NoteItem({ id, content, important, toggleImportant, isAuth }) {
         </Text>
         <Spacer h={0.15} />
 
-        <Tooltip text={tooltipText}>
+        <Tooltip text={tooltipText} type={isAuth ? 'default' : 'error'}>
           <Toggle
             initialChecked={importantState}
             onChange={handleImportantToggle}

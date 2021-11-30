@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Grid, Button, Spacer, useMediaQuery } from '@geist-ui/react'
+import { Grid, Button, Spacer, useMediaQuery, Text } from '@geist-ui/react'
 
 import useNotes from '../../hooks/useNotes'
 import useAuth from '../../hooks/useAuth'
@@ -37,6 +37,7 @@ export default function Notes() {
 
   return (
     <>
+      <Text h1>Notes</Text>
       <div style={isXS ? styleOfButtons.mobile : styleOfButtons.desktop}>
         <AddNote />
         <Button onClick={handleShowImportant} type="success" ghost>
