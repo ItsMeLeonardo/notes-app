@@ -30,7 +30,7 @@ export default function Notes() {
           {showAll ? 'Show Important' : 'Show All'}
         </button>
       </div>
-      <Grid.Container gap={2}>
+      <Grid.Container gap={2} style={{ padding: '.5rem' }}>
         {noteToShow?.map(({ id, content, important }) => (
           <Note
             key={id}

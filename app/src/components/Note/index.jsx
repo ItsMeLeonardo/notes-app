@@ -14,7 +14,7 @@ function NoteItem({ id, content, important, toggleImportant }) {
   }
 
   return (
-    <Grid style={style} xs={12} md={8} lg={6}>
+    <Grid style={style} xs={24} sm={12} md={8} lg={6}>
       <Card height="140px" width="100%" shadow>
         <Text small>
           {important && (
