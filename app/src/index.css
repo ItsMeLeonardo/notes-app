@@ -9,3 +9,35 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex.center {
+  justify-content: center;
+  align-items: center;
+}
+.flex.column {
+  flex-direction: column;
+}
+.flex.row {
+  flex-direction: row;
+}
+.flex.between {
+  justify-content: space-between;
+}
+.flex.around {
+  justify-content: space-around;
+}
+.flex.evenly {
+  justify-content: space-evenly;
+}
+.flex.gap-1 {
+  gap: 0.5rem;
+}
+.flex.gap-2 {
+  gap: 1rem;
+}
+.flex.gap-3 {
+  gap: 1.5rem;
+}
