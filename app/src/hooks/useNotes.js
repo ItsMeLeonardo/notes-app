@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 
 import { NoteContext } from '../context/NoteContext'
-import { getAll, create, update } from '../service/getNotes'
+import { getAll, create, update, remove } from '../service/notes'
 
 const useNotes = () => {
   const { notes, setNotes } = useContext(NoteContext)
@@ -34,7 +34,19 @@ const useNotes = () => {
       })
   }
 
-  return { notes, saveNote, updateNote, error }
+  const removeNote = ({ id }) => {
+    remove(id)
+      .then((response) => {
+        if (response) {
+          setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
+        }
+      })
+      .catch((err) => {
+        setError({ err })
+      })
+  }
+
+  return { notes, saveNote, updateNote, error, removeNote }
 }
 
 export default useNotes

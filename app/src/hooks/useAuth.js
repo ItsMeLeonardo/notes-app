@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 
 import loginService from '../service/login'
-import { getToken } from '../service/getNotes'
+import { getToken } from '../service/notes'
 
 const useAuth = () => {
   const [error, setError] = useState(false)

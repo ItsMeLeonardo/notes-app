@@ -36,4 +36,15 @@ const update = async (id, newNote) => {
   }
 }
 
-export { getAll, create, update, getToken }
+const remove = async (id) => {
+  try {
+    const config = {
+      headers: { Authorization: token },
+    }
+    const request = await axios.delete(`${baseUrl}/${id}`, config)
+    return request.status === 204 ? 'Note removed' : new Error('Could not remove note')
+  } catch (error) {
+    throw new Error(error.response.data.error)
+  }
+}
+export { getAll, create, update, getToken, remove }

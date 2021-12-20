@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { getNotesOfUser } from '../service/getUserData'
+import { notesOfUser } from '../service/getUserData'
 
 const useDataUser = (username) => {
   const [dataUser, setDataUser] = useState(null)
@@ -8,7 +8,7 @@ const useDataUser = (username) => {
 
   useEffect(() => {
     if (!dataUser) {
-      getNotesOfUser({ username }).then(setDataUser).catch(setError)
+      notesOfUser({ username }).then(setDataUser).catch(setError)
     }
   }, [])
 
